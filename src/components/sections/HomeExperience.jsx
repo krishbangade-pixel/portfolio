@@ -274,7 +274,7 @@ export default function HomeExperience() {
               onClick={scrollProjectsLeft}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 -translate-x-12 sm:-translate-x-16 rounded-full bg-black/80 backdrop-blur-md p-2 sm:p-3 text-white shadow-lg border border-white/20 hover:bg-black/90 transition-colors"
+              className="hidden md:block absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 -translate-x-12 sm:-translate-x-16 rounded-full bg-black/80 backdrop-blur-md p-2 sm:p-3 text-white shadow-lg border border-white/20 hover:bg-black/90 transition-colors"
             >
               <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
             </m.button>
@@ -284,14 +284,14 @@ export default function HomeExperience() {
               onClick={scrollProjectsRight}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 translate-x-12 sm:translate-x-16 rounded-full bg-black/80 backdrop-blur-md p-2 sm:p-3 text-white shadow-lg border border-white/20 hover:bg-black/90 transition-colors"
+              className="hidden md:block absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 translate-x-12 sm:translate-x-16 rounded-full bg-black/80 backdrop-blur-md p-2 sm:p-3 text-white shadow-lg border border-white/20 hover:bg-black/90 transition-colors"
             >
               <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
             </m.button>
 
             <div
               ref={projectsContainerRef}
-              className="mt-10 flex gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
+              className="mt-10 flex gap-4 sm:gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
@@ -310,20 +310,18 @@ export default function HomeExperience() {
                     document.body.style.overflow = 'hidden';
                     setModalProject(project);
                   }}
-                  className="glass-card group rounded-3xl p-6 text-left transition hover:shadow-neon cursor-pointer flex-shrink-0 w-[350px] sm:w-[300px] md:w-[350px] lg:w-[400px]"
+                  className="glass-card group rounded-3xl p-5 sm:p-6 text-left transition hover:shadow-neon cursor-pointer flex-shrink-0 w-[85vw] sm:w-[300px] md:w-[350px] lg:w-[400px] snap-center"
                 >
-                  <div className="mb-5 rounded-2xl overflow-hidden bg-black transition group-hover:scale-[1.02] cursor-pointer h-0 pb-[56.25%] relative">
-                    <div className="absolute inset-0">
-                      <video
-                        src={project.videoUrl}
-                        poster={project.thumbnail}
-                        className="w-full h-full object-contain"
-                        controls
-                        playsInline
-                        preload="none"
-                        onPlay={handleVideoPlay}
-                      />
-                    </div>
+                  <div className="mb-5 rounded-2xl overflow-hidden bg-black transition group-hover:scale-[1.02] cursor-pointer relative flex items-center justify-center min-h-[200px]">
+                    <video
+                      src={project.videoUrl}
+                      poster={project.thumbnail}
+                      className="w-full h-auto max-h-[60vh] object-contain rounded-2xl"
+                      controls
+                      playsInline
+                      preload="none"
+                      onPlay={handleVideoPlay}
+                    />
                   </div>
                   <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">{project.category}</p>
                   <h3 className="mt-2 text-2xl font-semibold">{project.title}</h3>
@@ -859,11 +857,11 @@ export default function HomeExperience() {
                 </button>
 
                 {/* Video Container */}
-                <div className="aspect-video w-full bg-black">
+                <div className="w-full bg-black flex justify-center items-center">
                   <video
                     src={modalProject.videoUrl}
                     poster={modalProject.thumbnail}
-                    className="w-full h-full object-contain"
+                    className="w-full h-auto max-h-[70vh] object-contain"
                     controls
                     playsInline
                     autoPlay
